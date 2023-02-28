@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 5 Canvas</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #canvas {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="color" id="color" value="#73fc03" name="base" />
+    <canvas id="canvas"></canvas>
+  </body>
+
+  <script>
+    window.addEventListener("load", () => {
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+
+      // ctx.fillRect(50 , 50 , 200 , 300);
+
+      // ctx.strokeStyle = "red"
+      // ctx.lineWidth = 5;
+      // ctx.strokeRect(50 , 50 , 100 , 300);
+      // ctx.strokeStyle = "blue"
+      // ctx.lineWidth = 2;
+      // ctx.strokeRect(100 , 100 , 100 , 300);
+
+      // ctx.beginPath();
+      // ctx.moveTo(100 , 100);
+      // ctx.lineTo(200 , 100);
+      // ctx.lineTo(200 , 150);
+      // ctx.closePath();
+      // ctx.stroke();
+
+      const colorType = document.getElementById("color");
+
+      // variables
+      let painting = false;
+
+      function startPosition(e) {
+        painting = true;
+        draw(e);
+      }
+
+      function endPosition() {
+        painting = false;
+        ctx.beginPath();
+      }
+
+      function draw(e) {
+        if (painting == false) return;
+        ctx.lineWidth = 10;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = colorType.value;
+
+        ctx.lineTo(e.clientX, e.clientY);
+        ctx.stroke();
+      }
+
+
+      window.addEventListener("mousedown", startPosition);
+      window.addEventListener("mouseup", endPosition);
+      window.addEventListener("mousemove", draw);
+    });
+
+    // window.addEventListener("resize" , ()=> {
+    //     canvas.height = window.innerHeight
+    //     canvas.width = window.innerWidth
+    // })
+  </script>
+</html>

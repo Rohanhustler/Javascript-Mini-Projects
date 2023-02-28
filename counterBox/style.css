@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(210, 208, 208);
+}
+.parent {
+    display: flex;
+    height: 50vh;
+    width: 99vw;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    height: 100px;
+    width: 100px;
+}
+#red {
+    background-color: red;
+}
+#blue {
+    background-color: rgb(14, 126, 238);
+}
+#green {
+    background-color: rgb(24, 238, 24);
+}
+.btn {
+    padding: 3px 5px;
+    font-size: large;
+    border: 2px solid greenyellow;
+    border-radius: 6px;
+    background-color: aquamarine;
+}

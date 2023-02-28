@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Understanding JavaScript's Capture</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body class="bod">
+    <div class="one">
+      <div class="two">
+        <div class="three"></div>
+      </div>
+    </div>
+
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      div {
+        width: 100%;
+        padding: 100px;
+      }
+
+      .one {
+        background: thistle;
+      }
+
+      .two {
+        background: mistyrose;
+      }
+
+      .three {
+        background: coral;
+      }
+    </style>
+
+    <button></button>
+    <script>
+      const divs = document.querySelectorAll("div");
+
+      const logText = (e, div) => {
+        console.log(div.classList.value); // on clicking the 3rd div it consoling three teo one and this is called bubbling where it calls all the nested loops divs
+
+        e.stopPropagation(); // by using this  I stop the bubbling
+      };
+      divs.forEach((div) =>
+        div.addEventListener("click", (e) => logText(e, div), {
+          capture: false,
+        })
+      ); // by default caputre value is false;
+
+      const button = document.querySelector("button");
+      button.addEventListener("click", () => console.log("hi"), { once: true }); // once only allow one time to run the function and then remove event listener
+    </script>
+  </body>
+</html>
